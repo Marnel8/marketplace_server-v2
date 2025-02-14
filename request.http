@@ -1,0 +1,41 @@
+@BaseURl = http://localhost:5000/api/v1
+
+POST {{BaseURl}}/user/register
+content-type: application/json
+
+{
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "mharnhelvalentin@gmail.com",
+    "role": "admin",
+    "password": "12345678",
+    "age": 21,
+    "contactNumber": "09123456789"
+}
+
+###
+POST {{BaseURl}}/user/activate-user
+content-type: application/json
+
+{
+    "activation_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImZpcnN0TmFtZSI6IkpvaG4iLCJsYXN0TmFtZSI6IkRvZSIsImVtYWlsIjoibWhhcm5oZWx2YWxlbnRpbkBnbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzQ1Njc4IiwiYWdlIjoyMSwicm9sZSI6ImFkbWluIiwiY29udGFjdE51bWJlciI6IjA5MTIzNDU2Nzg5In0sImFjdGl2YXRpb25Db2RlIjoiMjU1NiIsImlhdCI6MTczOTU1NTAxOCwiZXhwIjoxNzM5NTU4NjE4fQ._l-5FhGEDoXqpvcJriPBHtBm_LYpGFcyjJszXw7Nydw",
+    "activation_code": "2556"
+}
+
+###
+POST {{BaseURl}}/user/
+Content-Type: application/json
+
+{
+    "email": "mharnhelvalentin@gmail.com",
+    "password": "12345678"
+}
+
+###
+GET {{BaseURl}}/user/me
+
+###
+GET {{BaseURl}}/user/refresh-token
+
+###
+GET {{BaseURl}}/user/logout

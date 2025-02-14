@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,600;1,700&family=Roboto:wght@500&display=swap"
+			rel="stylesheet"
+		/>
+		<title>Order Status</title>
+		<style>
+			/* ... keeping same styles from order-mail.ejs ... */
+			body {
+				font-family: "Poppins", sans-serif;
+				background-color: #f4f4f4;
+				margin: 0;
+				padding: 0;
+			}
+			.container {
+				max-width: 600px;
+				min-height: 100vh;
+				margin: 0 auto;
+				padding: 20px;
+				background-color: #fff;
+				box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+			}
+			.header {
+				background-color: #ae211e;
+				margin: -20px -20px 30px -20px;
+				padding: 30px;
+				text-align: center;
+				color: #fff;
+				border-radius: 0 0 15px 15px;
+			}
+			/* ... other existing styles ... */
+
+			/* Additional styles for status page */
+			.status-timeline {
+				margin: 30px 0;
+				position: relative;
+				padding-left: 30px;
+			}
+			.status-step {
+				position: relative;
+				margin-bottom: 30px;
+				padding-left: 20px;
+			}
+			.status-step:before {
+				content: "";
+				width: 15px;
+				height: 15px;
+				background: #ae211e;
+				border-radius: 50%;
+				position: absolute;
+				left: -23px;
+				top: 5px;
+			}
+			.status-step.active:before {
+				background: #28a745;
+			}
+			.status-step:after {
+				content: "";
+				width: 2px;
+				height: 100%;
+				background: #ddd;
+				position: absolute;
+				left: -16.5px;
+				top: 20px;
+			}
+			.status-step:last-child:after {
+				display: none;
+			}
+			.status-date {
+				color: #666;
+				font-size: 14px;
+				margin-bottom: 5px;
+			}
+			.status-label {
+				font-weight: 600;
+				color: #333;
+			}
+
+			.logo {
+				width: 150px;
+				height: auto;
+				margin: 0 auto 20px auto;
+				display: block;
+			}
+
+			.message-sm {
+				text-align: center;
+				margin-bottom: 40px;
+			}
+
+			.message-sm h1 {
+				color: #fff;
+				font-size: 28px;
+				margin-bottom: 10px;
+			}
+
+			.message-sm h2 {
+				color: #fff;
+				font-size: 24px;
+				margin-bottom: 10px;
+			}
+
+			.order-status {
+				display: inline-block;
+				background: rgba(255, 255, 255, 0.1);
+				color: #fff;
+				padding: 12px 25px;
+				border-radius: 8px;
+				font-weight: 500;
+				margin-top: 15px;
+				backdrop-filter: blur(5px);
+				border: 1px solid rgba(255, 255, 255, 0.2);
+			}
+
+			.order-box {
+				background-color: #f8f9fa;
+				border-radius: 10px;
+				padding: 20px;
+				margin-bottom: 30px;
+			}
+
+			.order-header {
+				display: flex;
+				justify-content: space-between;
+				margin-bottom: 20px;
+				padding-bottom: 10px;
+				border-bottom: 1px solid #dee2e6;
+			}
+
+			.items-table {
+				width: 100%;
+				border-collapse: collapse;
+				margin: 20px 0;
+			}
+
+			.items-table th,
+			.items-table td {
+				padding: 12px;
+				text-align: left;
+				border-bottom: 1px solid #dee2e6;
+			}
+
+			.items-table th {
+				background-color: #f1f1f1;
+				font-weight: 600;
+			}
+
+			.total-row {
+				display: flex;
+				justify-content: space-between;
+				padding: 15px;
+				background-color: #fff;
+				border-radius: 5px;
+				margin-top: 20px;
+				font-weight: 600;
+				font-size: 1.1em;
+			}
+
+			.footer {
+				text-align: center;
+				color: #666;
+				border-top: 1px solid #dee2e6;
+				padding-top: 20px;
+				margin-top: 40px;
+			}
+
+			.footer a {
+				color: #ae211e;
+				text-decoration: none;
+			}
+
+			.footer a:hover {
+				text-decoration: underline;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="header">
+				<img src="cid:logo" alt="BatStateU Logo" class="logo" />
+				<div class="message-sm">
+					<h1>BatStateU Marketplace</h1>
+					<div class="order-status">
+						Order Status:
+						<span
+							style="
+								font-weight: 400;
+								font-size: 18px;
+								text-transform: capitalize;
+							"
+							><%= order.status %></span
+						>
+					</div>
+				</div>
+			</div>
+
+			<div class="order-box">
+				<div class="order-header">
+					<span>Order #: <%= order.id %></span>
+					<span>Order Date: <%= order.orderDate %></span>
+				</div>
+				<table class="items-table">
+					<thead>
+						<tr>
+							<th>Item</th>
+							<th>Qty</th>
+							<th>Cost</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><%= order.item %></td>
+							<td><%= order.quantity %></td>
+							<td>₱<%= order.total %>.00</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<div class="total-row">
+					<span>Total:</span>
+					<span>₱<%= order.total %>.00</span>
+				</div>
+			</div>
+
+			<div class="footer">
+				<p>
+					If you have any questions, please contact our support team at
+					<a href="mailto:mharnhel.valentin@g.batstate-u.edu.ph"
+						>noreplysteerhub@gmail.com</a
+					>
+				</p>
+				<p>&copy; 2024 BatStateU Marketplace. All rights reserved.</p>
+			</div>
+		</div>
+	</body>
+</html>

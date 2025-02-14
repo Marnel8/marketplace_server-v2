@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,600;1,700&family=Roboto:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <title>Order Confirmation</title>
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        max-width: 600px;
+        min-height: 100vh;
+        margin: 0 auto;
+        padding: 40px;
+        background-color: #fff;
+        color: #333;
+      }
+      .header {
+        background-color: #AE211E;
+        margin: -40px -40px 30px -40px;
+        padding: 40px;
+        text-align: center;
+        color: #fff;
+      }
+      .logo {
+        width: 150px;
+        height: auto;
+        margin: 0 auto 20px auto;
+        display: block;
+      }
+      .message-sm {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+      .message-sm h1 {
+        color: #fff;
+        font-size: 28px;
+        margin-bottom: 10px;
+      }
+      .message-sm h2 {
+        color: #fff;
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+      .message-sm p {
+        color: #fff;
+        font-size: 16px;
+      }
+      .order-box {
+        background: #f8f9fa;
+        border-radius: 10px;
+        padding: 30px;
+        margin-bottom: 30px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      }
+      .order-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #eee;
+      }
+      .order-header span {
+        font-size: 14px;
+        color: #666;
+      }
+      .order-status {
+        display: inline-block;
+        background: #AE211E;
+        color: #fff;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 14px;
+        margin-bottom: 20px;
+      }
+      .items-table {
+        width: 100%;
+        margin: 20px 0;
+      }
+      .items-table th {
+        background: #f1f1f1;
+        padding: 12px 15px;
+        text-align: left;
+        font-weight: 600;
+        color: #333;
+        font-size: 14px;
+      }
+      .items-table td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #eee;
+        color: #666;
+        font-size: 14px;
+      }
+      .total-row {
+        display: flex;
+        justify-content: flex-end;
+        padding-top: 20px;
+        margin-top: 20px;
+        border-top: 2px solid #eee;
+      }
+      .total-row span {
+        font-size: 16px;
+        font-weight: 600;
+        color: #333;
+      }
+      .total-row span:last-child {
+        margin-left: 30px;
+        color: #AE211E;
+      }
+      .footer {
+        text-align: center;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid #eee;
+        color: #666;
+      }
+      .footer a {
+        color: #AE211E;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <img src="cid:logo" alt="BatStateU Logo" class="logo"/>
+        <div class="message-sm">
+          <h1>BatStateU Marketplace</h1>
+          <h2>Please confirm your order using the code below!</h2>
+          <p style="font-weight: bold; font-size: 20px;"><%= order.id %></p>
+          <p>And we're as excited as you are.</p>
+        </div>
+      </div>
+      <div class="order-box">
+        <div class="order-header">
+          <span>Order #: <%= order.id %></span>
+          <span>Order Date: <%= order.date %></span>
+        </div>
+        
+        <div class="order-status">
+          <%= order.status %>
+        </div>
+
+        <table class="items-table">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Qty</th>
+              <th>Cost</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= order.item %></td>
+              <td><%= order.quantity %></td>
+              <td>₱<%= order.total %>.00</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="total-row">
+          <span>Total:</span>
+          <span>₱<%= order.total %>.00</span>
+        </div>
+      </div>
+
+      <div class="footer">
+        <p>
+          If you have any questions, please contact our support team at
+          <a href="mailto:noreply@batstateu.edu.ph">noreply@batstateu.edu.ph</a>
+        </p>
+        <p>&copy; 2024 BatStateU Marketplace. All rights reserved.</p>
+      </div>
+    </div>
+  </body>
+</html>

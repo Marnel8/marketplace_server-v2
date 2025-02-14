@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,600;1,700&family=Roboto:wght@500&display=swap"
+			rel="stylesheet"
+		/>
+		<title>Verification Status</title>
+		<style>
+			body {
+				font-family: "Poppins", sans-serif;
+				background-color: #f4f4f4;
+				margin: 0;
+				padding: 0;
+			}
+			.container {
+				max-width: 600px;
+				margin: 0 auto;
+				padding: 20px;
+				background-color: #fff;
+				box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+			}
+			.header {
+				background-color: #ae211e;
+				padding: 30px;
+				text-align: center;
+				color: #fff;
+				border-radius: 0 0 15px 15px;
+			}
+			.header .logo {
+				width: 150px;
+				margin: 0 auto 20px auto;
+				display: block;
+			}
+			.content {
+				padding: 20px;
+				text-align: center;
+			}
+			.content h1 {
+				font-size: 24px;
+				color: #333;
+				margin-bottom: 20px;
+			}
+			.content p {
+				font-size: 16px;
+				color: #666;
+				margin-bottom: 15px;
+				line-height: 1.5;
+			}
+			.status {
+				font-size: 18px;
+				font-weight: bold;
+				color: #28a745;
+				margin-bottom: 20px;
+			}
+			.footer {
+				text-align: center;
+				color: #666;
+				padding-top: 20px;
+				border-top: 1px solid #dee2e6;
+				margin-top: 40px;
+			}
+			.footer a {
+				color: #ae211e;
+				text-decoration: none;
+			}
+			.footer a:hover {
+				text-decoration: underline;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="header">
+				<img src="cid:logo" alt="Marketplace Logo" class="logo" />
+				<h1>Vendor Verification Update</h1>
+			</div>
+			<div class="content">
+				<h1>Dear <%= vendor.owner.name %>,</h1>
+				<p>
+					We are writing to inform you about the verification status of your
+					shop: <strong><%= vendor.shopName %></strong>.
+				</p>
+				<p class="status">Status: <%= newStatus %></p>
+				<% if (reason) { %>
+				<p>Reason: <%= reason %></p>
+				<% } %>
+				<p>
+					If you have any questions or concerns, please contact us at
+					<a href="mailto:noreplysteerhub@gmail.com">
+						noreplysteerhub@gmail.com
+					</a>
+					.
+				</p>
+			</div>
+			<div class="footer">
+				<p>&copy; 2024 BatStateU Marketplace. All rights reserved.</p>
+			</div>
+		</div>
+	</body>
+</html>
