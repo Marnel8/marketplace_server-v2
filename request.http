@@ -4,10 +4,10 @@ POST {{BaseURl}}/user/register
 content-type: application/json
 
 {
-    "firstName": "John",
-    "lastName": "Doe",
-    "email": "mharnhelvalentin@gmail.com",
-    "role": "admin",
+    "firstName": "Marnel",
+    "lastName": "Javier",
+    "email": "tiomarone02@gmail.com",
+    "role": "vendor",
     "password": "12345678",
     "age": 21,
     "contactNumber": "09123456789"
@@ -18,8 +18,8 @@ POST {{BaseURl}}/user/activate-user
 content-type: application/json
 
 {
-    "activation_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImZpcnN0TmFtZSI6IkpvaG4iLCJsYXN0TmFtZSI6IkRvZSIsImVtYWlsIjoibWhhcm5oZWx2YWxlbnRpbkBnbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzQ1Njc4IiwiYWdlIjoyMSwicm9sZSI6ImFkbWluIiwiY29udGFjdE51bWJlciI6IjA5MTIzNDU2Nzg5In0sImFjdGl2YXRpb25Db2RlIjoiMjU1NiIsImlhdCI6MTczOTU1NTAxOCwiZXhwIjoxNzM5NTU4NjE4fQ._l-5FhGEDoXqpvcJriPBHtBm_LYpGFcyjJszXw7Nydw",
-    "activation_code": "2556"
+    "activation_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImZpcnN0TmFtZSI6Ik1hcm5lbCIsImxhc3ROYW1lIjoiSmF2aWVyIiwiZW1haWwiOiJ0aW9tYXJvbmUwMkBnbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzQ1Njc4IiwiYWdlIjoyMSwicm9sZSI6InZlbmRvciIsImNvbnRhY3ROdW1iZXIiOiIwOTEyMzQ1Njc4OSJ9LCJhY3RpdmF0aW9uQ29kZSI6IjgwMDgiLCJpYXQiOjE3Mzk2NTUwNjAsImV4cCI6MTczOTY1ODY2MH0.em-vAp5IrN_LRexzTaPLPciJNVSffzKkeBsU7-L43q4",
+    "activation_code": "8008"
 }
 
 ###
@@ -27,7 +27,7 @@ POST {{BaseURl}}/user/
 Content-Type: application/json
 
 {
-    "email": "mharnhelvalentin@gmail.com",
+    "email": "tiomarone02@gmail.com",
     "password": "12345678"
 }
 
@@ -39,3 +39,53 @@ GET {{BaseURl}}/user/refresh-token
 
 ###
 GET {{BaseURl}}/user/logout
+
+###
+POST {{BaseURl}}/vendor
+{
+    "businessName": "Tech Solutions Inc.",
+    "businessType": "electronics",
+    "businessDescription": "Providing cutting-edge IT solutions to businesses worldwide.",
+    "businessAddress": "123 Innovation Drive, Tech City, TX, 75001",
+    "banner": "uploads/thumbnail-pic-12.png",
+    "logo": "uploads/thumbnail-pic-11.png",
+    "validId": "uploads/thumbnail-pic-12.png",
+    "ownerId": "079d5b8b-1297-4c21-a6c1-cf1e54938a85"
+}
+
+###
+GET {{BaseURl}}/vendor
+
+###
+GET {{BaseURl}}/vendor/info
+
+###
+PUT {{BaseURl}}/vendor/verify/597d8a07-f5e9-44b5-971e-29d68fe06e41
+Content-Type: application/json
+
+{
+    "newStatus": "verified"
+}
+
+###
+DELETE {{BaseURl}}/vendor/
+
+## PRODUCTS
+### GET PRODUCTS WITH VARIANT
+GET {{BaseURl}}/product/
+
+###
+GET {{BaseURl}}/product/vendor-products
+
+###
+GET {{BaseURl}}/product/verified-products
+
+## ORDER
+###
+POST {{BaseURl}}/order/
+Content-Type: application/json
+{
+    "productId": "e3909dde-ea89-4db8-bd9e-89fff9a379ae",
+    "variantId": "19f647a8-da38-4b64-bb72-7542578437be",
+    "quantity": 3
+}

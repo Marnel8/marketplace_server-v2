@@ -7,8 +7,10 @@ import {
 	UpdatedAt,
 	BelongsTo,
 	ForeignKey,
+	HasMany,
 } from "sequelize-typescript";
 import Product from "./product";
+import Order from "./order";
 
 @Table({
 	tableName: "variant",
@@ -44,6 +46,9 @@ export default class Variant extends Model {
 		allowNull: true,
 	})
 	declare variantImage: string;
+
+	@HasMany(() => Order)
+	declare orders: Order[];
 
 	@ForeignKey(() => Product)
 	@Column({

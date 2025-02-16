@@ -5,21 +5,23 @@ import {
 	DataType,
 	CreatedAt,
 	UpdatedAt,
-	HasMany,
 	BelongsTo,
 	ForeignKey,
 } from "sequelize-typescript";
 import User from "./user";
-import Product from "./product";
+import Variant from "./variants";
 
 export enum OrderStatus {
 	PENDING = "pending",
-	TO_BE_PICKED_UP = "to pick up",
+	DENIED = "denied",
 	CONFIRMED = "confirmed",
 	APPROVED = "approved",
-	SUCCESS = "success",
+	TO_PICK_UP = "to pick up",
+	PAID = "paid",
+	COMPLETED = "completed",
 	CANCELLED = "cancelled",
-	DENIED = "denied",
+	TO_RETURN = "to return",
+	RETURNED = "returned",
 }
 
 @Table({
@@ -42,15 +44,12 @@ export default class Order extends Model {
 	@BelongsTo(() => User)
 	declare user: User;
 
-	@ForeignKey(() => Product)
+	@ForeignKey(() => Variant)
 	@Column({ type: DataType.UUID })
 	declare productId: string;
 
-	@BelongsTo(() => Product)
-	declare product: Product;
-
-	@HasMany(() => Product)
-	declare products: Product[];
+	@BelongsTo(() => Variant)
+	declare product: Variant;
 
 	@ForeignKey(() => User)
 	@Column({ type: DataType.UUID })
@@ -66,15 +65,8 @@ export default class Order extends Model {
 	declare totalPrice: number;
 
 	@Column({
-		type: DataType.ENUM(
-			OrderStatus.PENDING,
-			OrderStatus.TO_BE_PICKED_UP,
-			OrderStatus.CONFIRMED,
-			OrderStatus.APPROVED,
-			OrderStatus.SUCCESS,
-			OrderStatus.CANCELLED,
-			OrderStatus.DENIED
-		),
+		type: DataType.ENUM(...Object.values(OrderStatus)),
+		defaultValue: OrderStatus.PENDING,
 	})
 	declare status: OrderStatus;
 

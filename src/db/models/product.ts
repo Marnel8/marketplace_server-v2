@@ -41,9 +41,6 @@ export default class Product extends Model {
 	})
 	declare category: ProductCategory;
 
-	@Column({ type: DataType.FLOAT })
-	declare price: number;
-
 	@Column({ type: DataType.STRING })
 	declare thumbnail: string;
 
@@ -53,9 +50,6 @@ export default class Product extends Model {
 	@Column({ type: DataType.FLOAT })
 	declare rating: number;
 
-	@Column({ type: DataType.INTEGER })
-	declare quantity: number;
-
 	@Column({
 		type: DataType.ENUM(...Object.values(VerificationStatus)),
 		defaultValue: VerificationStatus.PENDING,
@@ -64,13 +58,6 @@ export default class Product extends Model {
 
 	@HasMany(() => Variant)
 	declare variants: Variant[];
-
-	@ForeignKey(() => Order)
-	@Column({ type: DataType.UUID })
-	declare orderId: string;
-
-	@BelongsTo(() => Order)
-	declare order: Order;
 
 	@HasMany(() => Image)
 	declare images: Image[];

@@ -1,4 +1,7 @@
 interface MulterFiles {
-	thumbnail?: Express.Multer.File[]; // Single thumbnail image
-	variantImages?: Express.Multer.File[]; // Multiple variant images
+	thumbnail?: Express.Multer.File[];
+	variantImages?: Express.Multer.File[];
+	logo?: Express.Multer.File[];
+	banner?: Express.Multer.File[];
+	validId?: Express.Multer.File[];
 }

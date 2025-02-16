@@ -45,12 +45,17 @@ export const isVerifiedVendor = async (
 	res: Response,
 	next: NextFunction
 ) => {
+	const user = req.user;
 	const vendor = await Vendor.findOne({
 		where: {
 			ownerId: req.user.id,
 		},
 	});
-	if (vendor?.isVerified !== VerificationStatus.VERIFIED) {
+
+	if (
+		user.role === "vendor" &&
+		vendor?.isVerified !== VerificationStatus.VERIFIED
+	) {
 		throw new UnauthorizedError("Vendor not verified");
 	}
 

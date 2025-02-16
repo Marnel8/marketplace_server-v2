@@ -13,6 +13,6 @@ export interface IProduct {
 	variants: ICreateVariant[];
 	category: ProductCategory;
 	thumbnail: string;
-	brand: string;
-	ownerId: string;
+	brand?: string;
+	ownerId?: string;
 }
